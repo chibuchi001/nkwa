@@ -49,7 +49,7 @@
 - **🎙️ Voice-First Experience**: Natural conversation with AI interviewers using Vapi's advanced voice technology
 - **🤖 AI-Powered Question Generation**: Dynamic interview questions tailored to your role, experience level, and tech stack using Google Gemini
 - **📊 Intelligent Feedback System**: Comprehensive performance analysis across 5 key categories
-- **📝 Headless CMS Integration**: Content management through Storyblok for easy updates without code changes [see here]("https://github.com/chibuchi001/nkwa/blob/f4390f27fe2d6230d358acf562d6dc2cf1d04c23/app/(root)/page.tsx#L26-L37"), [here](https://github.com/chibuchi001/nkwa/blob/f4390f27fe2d6230d358acf562d6dc2cf1d04c23/app/(root)/interview/%5Bid%5D/page.tsx#L29-L39), [and here](https://github.com/chibuchi001/nkwa/blob/f4390f27fe2d6230d358acf562d6dc2cf1d04c23/lib/storyBlok.ts#L1-L10)
+- **📝 Headless CMS Integration**: Content management through Storyblok for easy updates without code changes [see here](https://github.com/chibuchi001/nkwa/blob/f4390f27fe2d6230d358acf562d6dc2cf1d04c23/app/(root)/page.tsx#L26-L37) , [here](https://github.com/chibuchi001/nkwa/blob/f4390f27fe2d6230d358acf562d6dc2cf1d04c23/app/(root)/interview/%5Bid%5D/page.tsx#L29-L39), [and here](https://github.com/chibuchi001/nkwa/blob/f4390f27fe2d6230d358acf562d6dc2cf1d04c23/lib/storyBlok.ts#L1-L10)
 - **🔥 Real-Time Processing**: Instant transcription and feedback generation
 - **📱 Fully Responsive**: Seamless experience across all devices
 
