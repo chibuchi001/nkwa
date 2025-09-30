@@ -13,6 +13,8 @@
     "@hookform/resolvers": "^4.1.3",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.2",
+    "@storyblok/js": "^4.3.1",
+    "@storyblok/react": "^5.4.13",
     "@vapi-ai/web": "^2.2.4",
     "ai": "^4.1.61",
     "class-variance-authority": "^0.7.1",

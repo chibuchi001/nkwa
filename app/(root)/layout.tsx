@@ -4,12 +4,14 @@ import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 
 import { isAuthenticated } from "@/lib/actions/auth.action";
+import StoryblokProvider from "@/components/StoryblokProvider";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const isUserAuthenticated = await isAuthenticated();
   if (!isUserAuthenticated) redirect("/sign-in");
 
   return (
+    <StoryblokProvider>
     <div className="root-layout">
       <nav>
         <Link href="/" className="flex items-center gap-2">
@@ -20,6 +22,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
       {children}
     </div>
+    </StoryblokProvider>
   );
 };
 

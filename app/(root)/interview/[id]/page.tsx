@@ -10,6 +10,8 @@ import {
 } from "@/lib/actions/general.action";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 import DisplayTechIcons from "@/components/DisplayTechIcons";
+import { getStoryblokApi } from '@/lib/storyBlok';
+import { StoryblokStory } from '@storyblok/react/rsc';
 
 const InterviewDetails = async ({ params }: RouteParams) => {
   const { id } = await params;
@@ -23,6 +25,18 @@ const InterviewDetails = async ({ params }: RouteParams) => {
     interviewId: id,
     userId: user?.id!,
   });
+
+  // Fetch content from Storyblok
+    let content = null;
+    try {
+      const storyblokApi = getStoryblokApi();
+      const { data } = await storyblokApi.get("cdn/stories/interview-gen", {
+        version: "published", // Use "published" for production
+      });
+      content = data.story.content;
+    } catch (error) {
+      console.error("Error fetching Storyblok content:", error);
+    }
 
   return (
     <>
@@ -54,6 +68,10 @@ const InterviewDetails = async ({ params }: RouteParams) => {
         type="interview"
         questions={interview.questions}
         feedbackId={feedback?.id}
+        interviewerName={content?.agent_name}
+        interviewerRole={content?.agent_role}
+        callButtonText={content?.callButtonText}
+        endButtonText={content?.endButtonText}
       />
     </>
   );

@@ -21,6 +21,20 @@ interface SavedMessage {
   content: string;
 }
 
+interface AgentProps {
+  userName: string;
+  userId?: string;
+  profileImage?: string;
+  type: string;
+  interviewId?: string;
+  feedbackId?: string;
+  questions?: string[];
+  callButtonText?: string;
+  endButtonText?: string;
+  interviewerName: string;
+  interviewerRole: string;
+}
+
 const Agent = ({
   userName,
   userId,
@@ -28,6 +42,10 @@ const Agent = ({
   feedbackId,
   type,
   questions,
+  interviewerName = "AI",
+  interviewerRole = "Interviewer",
+  callButtonText = "Call",
+  endButtonText = "End",
 }: AgentProps) => {
   const router = useRouter();
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
@@ -107,7 +125,8 @@ const Agent = ({
 
     if (callStatus === CallStatus.FINISHED) {
       if (type === "generate") {
-        router.push("/");
+        // router.push("/");
+        return
       } else {
         handleGenerateFeedback(messages);
       }
@@ -162,7 +181,7 @@ const Agent = ({
             />
             {isSpeaking && <span className="animate-speak" />}
           </div>
-          <h3>AI Interviewer</h3>
+          <h3><small className="text-sm"> {interviewerRole}:</small> {interviewerName}</h3>
         </div>
 
         {/* User Profile Card */}
@@ -208,13 +227,13 @@ const Agent = ({
 
             <span className="relative">
               {callStatus === "INACTIVE" || callStatus === "FINISHED"
-                ? "Call"
+                ? callButtonText
                 : ". . ."}
             </span>
           </button>
         ) : (
           <button className="btn-disconnect" onClick={() => handleDisconnect()}>
-            End
+            {endButtonText}
           </button>
         )}
       </div>

@@ -9,6 +9,8 @@ import {
   getInterviewsByUserId,
   getLatestInterviews,
 } from "@/lib/actions/general.action";
+import { getStoryblokApi } from '@/lib/storyBlok';
+import { StoryblokStory } from '@storyblok/react/rsc';
 
 async function Home() {
   const user = await getCurrentUser();
@@ -21,17 +23,30 @@ async function Home() {
   const hasPastInterviews = userInterviews?.length! > 0;
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
+  // Fetch content from Storyblok
+  let content = null;
+  try {
+    const storyblokApi = getStoryblokApi();
+    const { data } = await storyblokApi.get("cdn/stories/interview-home", {
+      version: "published", // Use "published" for production
+    });
+    content = data.story.content;
+    console.log(content)
+  } catch (error) {
+    console.error("Error fetching Storyblok content:", error);
+  }
+
   return (
     <>
       <section className="card-cta">
         <div className="flex flex-col gap-6 max-w-lg">
-          <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
+          <h2>{content?.title}</h2>
           <p className="text-lg">
-            Practice real interview questions & get instant feedback
+            {content?.description}
           </p>
 
           <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
+            <Link href="/interview">{content?.homeCTAButtonText}</Link>
           </Button>
         </div>
 
