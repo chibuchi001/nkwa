@@ -20,7 +20,7 @@ interface SavedMessage {
   role: "user" | "system" | "assistant";
   content: string;
 }
- 
+
 const Agent = ({
   userName,
   userId,
@@ -118,7 +118,8 @@ const Agent = ({
     setCallStatus(CallStatus.CONNECTING);
 
     if (type === "generate") {
-      await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
+      console.log("is calling generate");
+      await vapi.start(process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!, {
         variableValues: {
           username: userName,
           userid: userId,
@@ -138,6 +139,7 @@ const Agent = ({
         },
       });
     }
+    setCallStatus(CallStatus.ACTIVE);
   };
 
   const handleDisconnect = () => {
@@ -186,7 +188,7 @@ const Agent = ({
               className={cn(
                 "transition-opacity duration-500 opacity-0",
                 "animate-fadeIn opacity-100"
-              )} 
+              )}
             >
               {lastMessage}
             </p>
